@@ -1,7 +1,7 @@
 const multer = require("multer");
 const sharp = require("sharp");
 const path = require("path");
-const fs = require("fs");
+const fs = require("fs").promises; // Using promises version of fs
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -45,8 +45,13 @@ const productImgResize = async (req, res, next) => {
         .toFormat("jpeg")
         .jpeg({ quality: 90 })
         .toFile(`public/images/products/${file.filename}`);
-      // fs.unlinkSync(`public/images/blogs/${file.filename}`);
-      fs.unlinkSync(`public/images/products/${file.filename}`);
+
+      // Unlink the original file after resizing
+      try {
+        await fs.unlink(file.path);
+      } catch (err) {
+        console.error("Error while unlinking file:", err);
+      }
     })
   );
 
@@ -63,6 +68,13 @@ const blogImgResize = async (req, res, next) => {
         .toFormat("jpeg")
         .jpeg({ quality: 90 })
         .toFile(`public/images/blogs/${file.filename}`);
+
+      // Unlink the original file after resizing
+      try {
+        await fs.unlink(file.path);
+      } catch (err) {
+        console.error("Error while unlinking file:", err);
+      }
     })
   );
 

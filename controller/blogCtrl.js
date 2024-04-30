@@ -187,7 +187,15 @@ const uploadImages = asyncHandler(async (req, res) => {
       const { path } = file;
       const newPath = await uploader(path);
       urls.push(newPath);
-      fs.unlinkSync(path);
+      try {
+        if (fs.existsSync(path)) {
+          fs.unlinkSync(path);
+        } else {
+          console.log("File not found:", path);
+        }
+      } catch (unlinkError) {
+        console.error("Error unlinking file:", unlinkError);
+      }
     }
     const findBlog = await Blog.findByIdAndUpdate(
       id,
