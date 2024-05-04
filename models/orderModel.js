@@ -7,7 +7,7 @@ var orderSchema = new mongoose.Schema(
       {
         product: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "product",
+          ref: "Product",
         },
         count: Number,
         color: String,
@@ -26,7 +26,10 @@ var orderSchema = new mongoose.Schema(
         "Delivered",
       ],
     },
-    orderBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    orderby: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
   {
     timestamps: true,
@@ -34,4 +37,4 @@ var orderSchema = new mongoose.Schema(
 );
 
 //Export the model
-module.exports = mongoose.model("order", orderSchema);
+module.exports = mongoose.model("Order", orderSchema);

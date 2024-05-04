@@ -1,6 +1,6 @@
 const { request, response } = require("express");
 const User = require("../models/userModel");
-const Product = require("../models/productmodel");
+const Product = require("../models/productModel");
 const asyncHandler = require("express-async-handler");
 const slugify = require("slugify");
 const { json } = require("body-parser");

@@ -1,5 +1,3 @@
-//
-
 const mongoose = require("mongoose");
 
 // Check if the Product model already exists
