@@ -9,6 +9,8 @@ const blogRouter = require("./routes/blogRoute");
 const categoryRouter = require("./routes/prodcategoryRoute");
 const blogCatRouter = require("./routes/blogCatRoute");
 const brandRouter = require("./routes/brandRoute");
+const colorRouter = require("./routes/colorRoute");
+const enqRouter = require("./routes/enqRoute");
 const couponRouter = require("./routes/couponRoute");
 const bodyParser = require("body-parser");
 const { notFound, errorHandler } = require("./middlewares/errorHandler");
@@ -32,6 +34,8 @@ app.use("/api/category", categoryRouter);
 app.use("/api/blogcategory", blogCatRouter);
 app.use("/api/brand", brandRouter);
 app.use("/api/coupon", couponRouter);
+app.use("/api/color", colorRouter);
+app.use("/api/enquiry", enqRouter);
 
 app.use(notFound);
 app.use(errorHandler);
@@ -39,5 +43,3 @@ app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-

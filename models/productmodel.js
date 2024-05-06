@@ -51,7 +51,7 @@ try {
         },
       ],
       color: [],
-      tags: String,
+      tags: [],
       ratings: [
         {
           star: Number,
